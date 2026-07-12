@@ -1,39 +1,42 @@
-Prédiction énergétique
+Segmentation clients
 
-Pipeline de Machine Learning supervisé pour prédire une consommation énergétique à partir de données historiques.
+Segmentation d'une base client par clustering non supervisé, pour orienter une stratégie marketing ciblée.
 
 Contexte
 
-[À compléter : d'où viennent les données ? Quel bâtiment/secteur/échelle ? Quel est l'enjeu métier — anticiper la consommation pour optimiser des coûts, dimensionner une installation, etc. ?]
+[À compléter : quelle entreprise/secteur ? Quel est l'objectif business — mieux cibler des campagnes, identifier des clients à forte valeur, prévenir le churn ?]
 
 Données
 
 
 Source : [nom du dataset / origine]
-Taille : [nombre de lignes, période couverte]
-Variables principales : [ex. température, surface, historique de consommation...]
+Taille : [nombre de clients / transactions]
+Variables principales : [ex. historique d'achats, fréquence, montant, récence]
 
 
 Méthodologie
 
 
-Preprocessing & Feature Engineering — nettoyage des données, création de variables (ex. moyennes glissantes, variables temporelles), gestion des valeurs manquantes.
-Pipeline Scikit-learn — encapsulation du preprocessing et du modèle dans un Pipeline pour garantir la reproductibilité train/test.
-Modélisation — GradientBoostingRegressor, avec optimisation des hyperparamètres via GridSearchCV (recherche sur [préciser les hyperparamètres testés, ex. n_estimators, max_depth, learning_rate]).
-Évaluation — validation croisée, métriques de régression.
+Préparation des données — nettoyage, agrégation des transactions par client.
+Analyse RFM (Récence, Fréquence, Montant) — construction des indicateurs par client.
+Réduction de dimension (ACP) — projection des variables pour faciliter la visualisation et réduire la corrélation entre features.
+Clustering — [préciser l'algorithme utilisé, ex. K-Means] avec détermination du nombre optimal de clusters (méthode du coude / score de silhouette).
 
 
 Résultats
 
-MétriqueValeurR²0.77[RMSE / MAE si disponible][valeur]
 
-[Ajoutez ici un graphique clé si possible : prédictions vs valeurs réelles, importance des variables (feature importance)]
+Nombre de segments identifiés : [X]
+Profil de chaque segment : [ex. "gros acheteurs récents", "clients dormants", "nouveaux clients à fort potentiel"...]
+
+
+[Ajoutez ici une visualisation clé : projection ACP colorée par cluster, radar chart des profils]
 
 Structure du repo
 
-├── data/                  # Données brutes / nettoyées (ou lien de téléchargement si trop volumineux)
-├── notebooks/              # Notebooks d'exploration et de modélisation
-├── src/                    # Scripts Python (preprocessing, pipeline, entraînement)
+├── data/
+├── notebooks/
+├── src/
 ├── requirements.txt
 └── README.md
 
@@ -42,10 +45,10 @@ Lancer le projet
 bashgit clone https://github.com/Vortax1247/[nom-du-repo].git
 cd [nom-du-repo]
 pip install -r requirements.txt
-jupyter notebook notebooks/prediction_energetique.ipynb
+jupyter notebook notebooks/segmentation_clients.ipynb
 
 Pistes d'amélioration
 
 
-[ex. tester d'autres modèles (XGBoost, LightGBM)]
-[ex. enrichir les features avec des données météo externes]
+[ex. tester d'autres algorithmes de clustering (DBSCAN, clustering hiérarchique)]
+[ex. relier les segments à des actions marketing concrètes]
